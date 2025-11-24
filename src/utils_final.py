@@ -302,7 +302,7 @@ class MultiheadGQA(Module):
             query=q,
             key=k,
             value=v,
-            dropout=self.dropout_p,
+            dropout=self.dropout_p if self.training else 0.0,
             is_causal=True,      # we already passed an explicit mask
             need_weights=True,   # so we can store them
             average_attn_weights=False,
